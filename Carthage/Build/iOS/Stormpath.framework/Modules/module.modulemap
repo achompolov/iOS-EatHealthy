@@ -1,0 +1,10 @@
+framework module Stormpath {
+  umbrella header "Stormpath.h"
+
+  export *
+  module * { export * }
+}
+
+module Stormpath.Swift {
+    header "Stormpath-Swift.h"
+}

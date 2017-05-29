@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
@@ -15,6 +16,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var logInButton: UIButton!
     
+    @IBOutlet weak var labelMessage: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -20,4 +20,15 @@ class AlamofireManager: NSObject {
     // ====================================================================================
     let apiURL: String = "http://localhost:8080/api" //Main api url
     
+    func register(username: String, name: String, email: String, password: String, birthDate: Date, gender: String) {
+        let parameters: Parameters = [ "username": username,
+                           "email": email,
+                           "name": name,
+                           "password": password,
+                           "birthDate": birthDate,
+                           "gender": gender ]
+        
+        
+    }
+    
 }

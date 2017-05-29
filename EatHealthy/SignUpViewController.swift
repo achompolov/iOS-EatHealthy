@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -19,6 +20,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
     @IBOutlet weak var signUpButton: UIButton!
     
+    @IBOutlet weak var labelMessage: UILabel!
     
     // signUpBirthDate: UITextField to UIDatePicker on editing
     // ====================================================================================
@@ -229,7 +231,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     // Send the sign up form to the server
     // ====================================================================================
     @IBAction func signUpButtonClicked(_ sender: Any) {
-                
+       
         // Present FoodViewController
         // ================================================================
         let viewController = storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController

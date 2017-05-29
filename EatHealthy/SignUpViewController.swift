@@ -11,6 +11,8 @@ import Alamofire
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    let registerURL = "http://93.152.131.62/api/v1/clients/register"
+    
     @IBOutlet weak var signUpNameTextField: UITextField!
     @IBOutlet weak var signUpEmailTextField: UITextField!
     @IBOutlet weak var signUpUsernameTextField: UITextField!
@@ -232,11 +234,35 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     // ====================================================================================
     @IBAction func signUpButtonClicked(_ sender: Any) {
        
-        // Present FoodViewController
-        // ================================================================
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
-        present(viewController, animated: true, completion: nil)
-    }
+        let parameters: Parameters = [
+            "email": signUpEmailTextField.text!,
+            "password": signUpPasswordTextField.text!
+        ]
+        
+        Alamofire.request(registerURL, method: .post, parameters: parameters).responseJSON {
+            response in
+            print(response)
+            
+            if let result = response.result.value {
+                let jsonData = result as! NSDictionary
+                
+                let apiStatusCode = jsonData.value(forKey: "api_status_code") as! Int
+                
+                if apiStatusCode == 200 {
+                    // Present FoodViewController
+                    // ================================================================
+                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+                    self.present(viewController, animated: true, completion: nil)
+                } else {
+                    let alertController = UIAlertController(title: "Unable to sign up", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+
+        
+            }
     
     // Change to LogInViewController
     // ====================================================================================

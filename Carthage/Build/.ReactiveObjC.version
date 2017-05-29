@@ -1,0 +1,27 @@
+{
+  "iOS" : [
+    {
+      "hash" : "3daf0da390c95cfb4a6ccfba1a0c79939d938450c39127092f0880f9809d8526",
+      "name" : "ReactiveObjC"
+    }
+  ],
+  "commitish" : "2.1.2",
+  "watchOS" : [
+    {
+      "hash" : "c659c714aee06121985306c8fb6af0cb27c262bdbf56b358b39f7c18f215cc92",
+      "name" : "ReactiveObjC"
+    }
+  ],
+  "tvOS" : [
+    {
+      "hash" : "9daca1eb448c5f7969169e9d4a469f37b7a9a3463a83cfa41a4ea3e57ebaef66",
+      "name" : "ReactiveObjC"
+    }
+  ],
+  "Mac" : [
+    {
+      "hash" : "d9e78e71f15ee96a6997a29434330427411b3843e9a636e798340fcca993d39e",
+      "name" : "ReactiveObjC"
+    }
+  ]
+}

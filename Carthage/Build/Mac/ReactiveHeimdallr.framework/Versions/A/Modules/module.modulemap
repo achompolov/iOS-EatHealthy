@@ -1,0 +1,10 @@
+framework module ReactiveHeimdallr {
+  umbrella header "ReactiveHeimdallr.h"
+
+  export *
+  module * { export * }
+}
+
+module ReactiveHeimdallr.Swift {
+    header "ReactiveHeimdallr-Swift.h"
+}

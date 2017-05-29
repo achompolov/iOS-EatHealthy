@@ -16,6 +16,7 @@
 		F20228281EC70F910062CA72 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20228271EC70F910062CA72 /* UserNotifications.framework */; };
 		F203F88E1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F203F88D1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift */; };
 		F203F8901EDC1EC70020A252 /* FoodList.plist in Resources */ = {isa = PBXBuildFile; fileRef = F203F88F1EDC1EC70020A252 /* FoodList.plist */; };
+		F257F9DD1EDCC5D60015D665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */; };
 		F274B89E1EC6F309002F8ECF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F274B89D1EC6F309002F8ECF /* Alamofire.framework */; };
 		F29D1EF41EDA14CD00F34D5D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29D1EF31EDA14CC00F34D5D /* UserViewController.swift */; };
 		F2E81AC11E0B462700258FFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E81AC01E0B462700258FFF /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		F20228271EC70F910062CA72 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F203F88D1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieGraphCollectionViewCell.swift; sourceTree = "<group>"; };
 		F203F88F1EDC1EC70020A252 /* FoodList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FoodList.plist; sourceTree = "<group>"; };
+		F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F274B89D1EC6F309002F8ECF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F288ECA61EBF0964001D6187 /* EatHealthy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EatHealthy.entitlements; sourceTree = "<group>"; };
 		F29D1EF31EDA14CC00F34D5D /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,14 @@
 			name = SignUpViewController;
 			sourceTree = "<group>";
 		};
+		F257F9DB1EDCC5B60015D665 /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */,
+			);
+			name = SettingsViewController;
+			sourceTree = "<group>";
+		};
 		F29D1EF21EDA14A700F34D5D /* UserViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				F288ECA61EBF0964001D6187 /* EatHealthy.entitlements */,
+				F257F9DB1EDCC5B60015D665 /* SettingsViewController */,
 				25DDD6891E3EFAFF00F6353D /* SignUpViewController */,
 				25DDD6881E3EFAE800F6353D /* LogInViewController */,
 				25DDD6871E3EFAD000F6353D /* FoodViewController */,
@@ -368,6 +379,7 @@
 				25DDD6821E3ED67100F6353D /* FoodViewController.swift in Sources */,
 				F29D1EF41EDA14CD00F34D5D /* UserViewController.swift in Sources */,
 				25DDD6841E3EDA0000F6353D /* FoodItemCell.swift in Sources */,
+				F257F9DD1EDCC5D60015D665 /* SettingsViewController.swift in Sources */,
 				25DDD6861E3EE4D900F6353D /* FoodSelector.swift in Sources */,
 				253B68EB1E27C2BF00CFB54B /* SignUpViewController.swift in Sources */,
 				F2E81AC31E0B462700258FFF /* ViewController.swift in Sources */,

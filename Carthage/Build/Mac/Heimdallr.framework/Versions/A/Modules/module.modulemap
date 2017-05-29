@@ -1,0 +1,10 @@
+framework module Heimdallr {
+  umbrella header "Heimdallr.h"
+
+  export *
+  module * { export * }
+}
+
+module Heimdallr.Swift {
+    header "Heimdallr-Swift.h"
+}

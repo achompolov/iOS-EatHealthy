@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var signUpEmailTextField: UITextField!
     @IBOutlet weak var signUpUsernameTextField: UITextField!
     @IBOutlet weak var signUpPasswordTextField: UITextField!
+    @IBOutlet weak var signUpConfirmPasswordTextField: UITextField!
     @IBOutlet weak var signUpBirthDate: UITextField!
     @IBOutlet weak var signUpGender: UITextField!
     
@@ -55,7 +56,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
     // signUpGender: UITextField to UIPickerView on editing
     // ====================================================================================
-    let genders = ["Female", "Male", "Other"]
+    let genders = ["Female", "Male"]
     func toGenderPicker() {
         let genderPickerView: UIPickerView = UIPickerView()
         let toolbar = UIToolbar()
@@ -99,6 +100,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         self.signUpEmailTextField.delegate = self
         self.signUpUsernameTextField.delegate = self
         self.signUpPasswordTextField.delegate = self
+        self.signUpConfirmPasswordTextField.delegate = self
         self.signUpBirthDate.delegate = self
         self.signUpGender.delegate = self
         
@@ -162,13 +164,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 signUpPasswordTextField.becomeFirstResponder()
             }
         case signUpPasswordTextField:
-            if !((signUpBirthDate.text?.isEmpty)!) && !((signUpUsernameTextField.text?.isEmpty)!) {
+            if !((signUpConfirmPasswordTextField.text?.isEmpty)!) && !((signUpUsernameTextField.text?.isEmpty)!) {
                 signUpPasswordTextField.resignFirstResponder()
-            } else if (signUpBirthDate.text?.isEmpty)! && (signUpUsernameTextField.text?.isEmpty)! {
-                signUpBirthDate.becomeFirstResponder()
-            } else if !((signUpBirthDate.text?.isEmpty)!) && (signUpUsernameTextField.text?.isEmpty)!  {
+            } else if (signUpConfirmPasswordTextField.text?.isEmpty)! && (signUpUsernameTextField.text?.isEmpty)! {
+                signUpConfirmPasswordTextField.becomeFirstResponder()
+            } else if !((signUpConfirmPasswordTextField.text?.isEmpty)!) && (signUpUsernameTextField.text?.isEmpty)!  {
                 signUpUsernameTextField.becomeFirstResponder()
-            } else if ((signUpBirthDate.text?.isEmpty)!) && !((signUpUsernameTextField.text?.isEmpty)!){
+            } else if ((signUpConfirmPasswordTextField.text?.isEmpty)!) && !((signUpUsernameTextField.text?.isEmpty)!){
+                signUpBirthDate.becomeFirstResponder()
+            }
+        case signUpConfirmPasswordTextField:
+            if !((signUpBirthDate.text?.isEmpty)!) && !((signUpPasswordTextField.text?.isEmpty)!) {
+                signUpConfirmPasswordTextField.resignFirstResponder()
+            } else if (signUpBirthDate.text?.isEmpty)! && (signUpPasswordTextField.text?.isEmpty)! {
+                signUpBirthDate.becomeFirstResponder()
+            } else if !((signUpBirthDate.text?.isEmpty)!) && (signUpPasswordTextField.text?.isEmpty)!  {
+                signUpPasswordTextField.becomeFirstResponder()
+            } else if ((signUpBirthDate.text?.isEmpty)!) && !((signUpPasswordTextField.text?.isEmpty)!){
                 signUpBirthDate.becomeFirstResponder()
             }
         default:
@@ -177,6 +189,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         
         return true
     }
+    
     
     // Adding gradient background
     // ====================================================================================
@@ -199,15 +212,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         signUpEmailTextField.clearButtonMode = .whileEditing
         signUpUsernameTextField.clearButtonMode = .whileEditing
         signUpPasswordTextField.clearButtonMode = .whileEditing
+        signUpConfirmPasswordTextField.clearButtonMode = .whileEditing
     }
     
     // E-mail validation
     // ====================================================================================
     func isValidEmail(testStr: String) -> Bool {
-        print("validate emilId: \(testStr)")
         let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         let result = emailTest.evaluate(with: testStr)
+        print(result)
         return result
     }
     @IBAction func validateEmail(_ sender: UITextField) {
@@ -218,11 +232,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         }
     }
     
-    
     // Form validation and signUpButton enable
     // ====================================================================================
     func validateSignUpForm() -> Bool {
-        if(((signUpEmailTextField.text?.isEmpty)!) || ((signUpNameTextField.text?.isEmpty)!) || ((signUpUsernameTextField.text?.isEmpty)!) || ((signUpPasswordTextField.text?.isEmpty)!) || ((signUpBirthDate.text?.isEmpty)!) || ((signUpGender.text?.isEmpty)!)) {
+        if( ((signUpEmailTextField.text?.isEmpty)!) ||
+            ((signUpNameTextField.text?.isEmpty)!) ||
+            ((signUpUsernameTextField.text?.isEmpty)!) ||
+            ((signUpPasswordTextField.text?.isEmpty)!) ||
+            ((signUpConfirmPasswordTextField.text?.isEmpty)!) ||
+            ((signUpBirthDate.text?.isEmpty)!) ||
+            ((signUpGender.text?.isEmpty)!)) {
             return false
         }else {
             return true
@@ -234,35 +253,62 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     // ====================================================================================
     @IBAction func signUpButtonClicked(_ sender: Any) {
        
-        let parameters: Parameters = [
-            "email": signUpEmailTextField.text!,
-            "password": signUpPasswordTextField.text!
-        ]
+        /*
+        if !(isValidEmail(testStr: signUpEmailTextField.text!)) {
+            signUpEmailTextField.backgroundColor = UIColor.red
+            let alertController = UIAlertController(title: "Invalid email", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        } else if signUpPasswordTextField.text! == signUpConfirmPasswordTextField.text! {
+            signUpPasswordTextField.backgroundColor = UIColor.red
+            signUpConfirmPasswordTextField.backgroundColor = UIColor.red
+            let alertController = UIAlertController(title: "Passwords does not match", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+
+        } else {
         
-        Alamofire.request(registerURL, method: .post, parameters: parameters).responseJSON {
-            response in
-            print(response)
+        }
+        */
+        
+        if signUpPasswordTextField.text == signUpConfirmPasswordTextField.text {
+            signUpPasswordTextField.backgroundColor = UIColor.red
+            signUpConfirmPasswordTextField.backgroundColor = UIColor.red
+            let alertController = UIAlertController(title: "Passwords does not match", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+
+        } else {
+            let parameters: Parameters = [
+                "email": signUpEmailTextField.text!,
+                "password": signUpPasswordTextField.text!,
+                "password_confirmation": signUpConfirmPasswordTextField.text!
+            ]
             
-            if let result = response.result.value {
-                let jsonData = result as! NSDictionary
+            Alamofire.request(registerURL, method: .post, parameters: parameters).responseJSON {
+                response in
+                print(response)
                 
-                let apiStatusCode = jsonData.value(forKey: "api_status_code") as! Int
-                
-                if apiStatusCode == 200 {
-                    // Present FoodViewController
-                    // ================================================================
-                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
-                    self.present(viewController, animated: true, completion: nil)
-                } else {
-                    let alertController = UIAlertController(title: "Unable to sign up", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
+                if let result = response.result.value {
+                    let jsonData = result as! NSDictionary
+                    
+                    let apiStatusCode = jsonData.value(forKey: "api_status_code") as! Int
+                    let token = jsonData.value(forKey: "data") as! String
+                    
+                    if apiStatusCode == 200 {
+                        // Present FoodViewController
+                        // ================================================================
+                        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+                        self.present(viewController, animated: true, completion: nil)
+                    } else {
+                        let alertController = UIAlertController(title: "Unable to sign up", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alertController, animated: true, completion: nil)
+                    }
                 }
             }
         }
-
-        
-            }
+    }
     
     // Change to LogInViewController
     // ====================================================================================
@@ -274,7 +320,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     // Check if the sign up for is valid and enable sign up button
     // ====================================================================================
     @IBAction func formDidEndEditing(_ sender: UITextField) {
-        if (isValidEmail(testStr: signUpEmailTextField.text!) && validateSignUpForm()) {
+        if validateSignUpForm() {
             signUpButton.tintColor = UIColor(red: 167/255.0, green: 169/255.0, blue: 172/255.0, alpha: 1.0)
             signUpButton.backgroundColor = UIColor.white
             signUpButton.isEnabled = true

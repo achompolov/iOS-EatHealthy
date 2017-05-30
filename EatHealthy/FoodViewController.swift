@@ -122,33 +122,51 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
     func updateDisplayWith(itemName: String? = nil, itemQuantity: Int? = nil) {
         
         if let foodName = itemName {
-            itemNameLabel.text = "\(foodName)"
-            
             switch foodName {
-            case "apple":
+            case "candyBar":
+                itemNameLabel.text = "Candy Bar"
                 kcalLabel.text = "200"
                 gramsLabel.text = "(23 g)"
-            case "avocado":
-                kcalLabel.text = "100"
-                gramsLabel.text = "(30 g)"
-            case "banana":
-                kcalLabel.text = "150"
-                gramsLabel.text = "(25 g)"
-            case "bananaSplit":
-                kcalLabel.text = "50"
-                gramsLabel.text = "(151 g)"
-            case "bento":
-                kcalLabel.text = "10"
-                gramsLabel.text = "(45 g)"
-            case "candyBar":
-                kcalLabel.text = "20"
-                gramsLabel.text = "(29 g)"
-            case "cheese":
-                kcalLabel.text = "300"
-                gramsLabel.text = "(76 g)"
             case "chips":
-                kcalLabel.text = "30"
-                gramsLabel.text = "(15 g)"
+                itemNameLabel.text = "Chips"
+                kcalLabel.text = "199"
+                gramsLabel.text = "(22 g)"
+            case "cookie":
+                itemNameLabel.text = "Cookie"
+                kcalLabel.text = "189"
+                gramsLabel.text = "(34 g)"
+            case "dietSoda":
+                itemNameLabel.text = "Diet Soda"
+                kcalLabel.text = "900"
+                gramsLabel.text = "(500 g)"
+            case "fruitJuice":
+                itemNameLabel.text = "Fruit Juice"
+                kcalLabel.text = "211"
+                gramsLabel.text = "(500 g)"
+            case "popTart":
+                itemNameLabel.text = "Pop Tart"
+                kcalLabel.text = "300"
+                gramsLabel.text = "(100 g)"
+            case "sandwich":
+                itemNameLabel.text = "Sandwich"
+                kcalLabel.text = "200"
+                gramsLabel.text = "(23 g)"
+            case "soda":
+                itemNameLabel.text = "Soda"
+                kcalLabel.text = "800"
+                gramsLabel.text = "(180 g)"
+            case "sportsDrink":
+                itemNameLabel.text = "Sports Drink"
+                kcalLabel.text = "50"
+                gramsLabel.text = "(500 g)"
+            case "water":
+                itemNameLabel.text = "Water"
+                kcalLabel.text = "200"
+                gramsLabel.text = "(500 g)"
+            case "wrap":
+                itemNameLabel.text = "Wrap"
+                kcalLabel.text = "199"
+                gramsLabel.text = "(183 g)"
             default:
                 kcalLabel.text = "0"
                 gramsLabel.text = "(0 g)"

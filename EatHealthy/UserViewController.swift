@@ -24,6 +24,7 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         profileImage.clipsToBounds = true
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.backgroundColor = UIColor.darkGray
         
         
         setupCollectionViewCells()

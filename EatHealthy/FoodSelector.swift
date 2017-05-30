@@ -156,7 +156,7 @@ class InventoryUnarchiver {
 }
 
 class FoodSelected: FoodSelector {
-    let selection: [FoodSelection] = [.apple, .avocado, .banana, .bananaSplit, .bento, .candyBar, .cheese, .chips]
+    let selection: [FoodSelection] = [.candyBar, .chips, .cookie, .dietSoda, .fruitJuice, .popTart, .sandwich, .soda, .sportsDrink, .water, .wrap]
     var inventory: [FoodSelection : FoodItem]
     
     required init(inventory: [FoodSelection: FoodItem]) {

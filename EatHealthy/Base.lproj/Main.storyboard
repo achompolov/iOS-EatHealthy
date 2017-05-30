@@ -144,7 +144,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XhR-Cl-U2J">
-                                <rect key="frame" x="55" y="365" width="265" height="30"/>
+                                <rect key="frame" x="55" y="403" width="265" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Already have an account? Log in">
@@ -155,7 +155,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of birth" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M56-Wd-Qar">
-                                <rect key="frame" x="62" y="241" width="250" height="30"/>
+                                <rect key="frame" x="62" y="279" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -165,7 +165,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oha-Da-Vnh">
-                                <rect key="frame" x="112" y="327" width="150" height="30"/>
+                                <rect key="frame" x="112" y="365" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -189,11 +189,12 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                 <connections>
                                     <action selector="formDidEndEditing:" destination="inJ-KQ-VJZ" eventType="editingDidEnd" id="AFe-pH-0CB"/>
+                                    <action selector="validateConfirmPassword:" destination="inJ-KQ-VJZ" eventType="editingDidEnd" id="ceg-I7-OBF"/>
                                     <action selector="validateEmail:" destination="inJ-KQ-VJZ" eventType="editingDidEnd" id="5JE-GC-Mce"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhB-Kf-RrF">
-                                <rect key="frame" x="62" y="279" width="250" height="30"/>
+                                <rect key="frame" x="62" y="317" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -217,20 +218,20 @@
                                     <action selector="formDidEndEditing:" destination="inJ-KQ-VJZ" eventType="editingDidEnd" id="MJ6-PT-ohi"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wfy-eU-bhE">
-                                <rect key="frame" x="62" y="403" width="265" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PnR-xA-xsT">
+                                <rect key="frame" x="62" y="241" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="labelMessage" destination="Wfy-eU-bhE" id="35W-tQ-8EN"/>
                         <outlet property="signUpBirthDate" destination="M56-Wd-Qar" id="yF7-vu-r5Y"/>
                         <outlet property="signUpButton" destination="Oha-Da-Vnh" id="eer-JL-DYZ"/>
+                        <outlet property="signUpConfirmPasswordTextField" destination="PnR-xA-xsT" id="yLh-xB-U1F"/>
                         <outlet property="signUpEmailTextField" destination="DgQ-5X-Y3b" id="Ghq-Ha-gJw"/>
                         <outlet property="signUpGender" destination="LhB-Kf-RrF" id="U5U-TR-7e9"/>
                         <outlet property="signUpNameTextField" destination="2or-pa-4K2" id="Ugl-P3-1W9"/>
@@ -328,13 +329,6 @@
                                     <action selector="dontHaveAnAccount:" destination="BFN-td-CvL" eventType="touchUpInside" id="UiN-dQ-Zuz"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdo-Tg-QJ4">
-                                <rect key="frame" x="55" y="275" width="265" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -352,7 +346,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="klJ-Lz-78C"/>
                     <connections>
-                        <outlet property="labelMessage" destination="Kdo-Tg-QJ4" id="Tl0-4A-ZKu"/>
                         <outlet property="logInButton" destination="a0O-j6-KJX" id="1JV-UY-LC5"/>
                         <outlet property="logInPasswordTextField" destination="2RU-Bk-N2e" id="UvU-N0-yCW"/>
                         <outlet property="logInUsernameTextField" destination="IcM-Yx-VTo" id="Kzv-TK-5fD"/>

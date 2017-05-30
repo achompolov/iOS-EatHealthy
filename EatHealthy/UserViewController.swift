@@ -24,7 +24,13 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         profileImage.clipsToBounds = true
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.white.cgColor
-        profileImage.backgroundColor = UIColor.darkGray
+        
+        let hasToken = UserDefaults.standard.bool(forKey: "hasToken")
+        if hasToken == true {
+            profileImage.backgroundColor = UIColor.blue
+        } else {
+            profileImage.backgroundColor = UIColor.red
+        }
         
         
         setupCollectionViewCells()

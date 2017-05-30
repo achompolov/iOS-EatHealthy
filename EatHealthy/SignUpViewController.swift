@@ -296,6 +296,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                     let token = jsonData.value(forKey: "data") as! String
                     
                     if apiStatusCode == 200 {
+                        UserDefaults.standard.set(true, forKey: "hasToken")
+                        UserDefaults.standard.set(token, forKey: "token")
+                        
                         // Present FoodViewController
                         // ================================================================
                         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController

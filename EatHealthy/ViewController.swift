@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
+        
         // Add the gradient background
         // =======================================
         gradientBackground()
@@ -48,6 +49,7 @@ class ViewController: UIViewController {
         ]
         view.layer.insertSublayer(gradientBackground, at: 0) //Adding the background layer at z-index 0
     }
+
     
 }
 

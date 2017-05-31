@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import Alamofire
 
 fileprivate let reuseIdentifier = "foodItem"
-fileprivate let screenWidth = UIScreen.main.bounds.width
 
 class FoodViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -37,9 +37,8 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         
-        let padding: CGFloat = 10
-        let itemWidth = screenWidth/4 - padding
-        let itemHeight = itemWidth
+        let itemWidth = 375
+        let itemHeight = 70
         
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = 10
@@ -53,7 +52,7 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
     // MARK: UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return FoodManager.sharedInstance.foodCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

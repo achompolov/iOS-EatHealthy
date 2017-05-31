@@ -15,6 +15,8 @@
 		F20228281EC70F910062CA72 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20228271EC70F910062CA72 /* UserNotifications.framework */; };
 		F203F88E1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F203F88D1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift */; };
 		F20BB7041EDEEEA200F18B67 /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20BB7031EDEEEA200F18B67 /* FoodManager.swift */; };
+		F20BB7061EDEFCDE00F18B67 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20BB7051EDEFCDE00F18B67 /* SwiftyJSON.framework */; };
+		F20BB7071EDEFCDE00F18B67 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F20BB7051EDEFCDE00F18B67 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F257F9DD1EDCC5D60015D665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */; };
 		F274B89E1EC6F309002F8ECF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F274B89D1EC6F309002F8ECF /* Alamofire.framework */; };
 		F29D1EF41EDA14CD00F34D5D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29D1EF31EDA14CC00F34D5D /* UserViewController.swift */; };
@@ -51,6 +53,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F20BB7071EDEFCDE00F18B67 /* SwiftyJSON.framework in Embed Frameworks */,
 				F20228241EC7057E0062CA72 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -66,6 +69,8 @@
 		F20228271EC70F910062CA72 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F203F88D1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieGraphCollectionViewCell.swift; sourceTree = "<group>"; };
 		F20BB7031EDEEEA200F18B67 /* FoodManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
+		F20BB7051EDEFCDE00F18B67 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		F20BB7081EDEFD0700F18B67 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F274B89D1EC6F309002F8ECF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F288ECA61EBF0964001D6187 /* EatHealthy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EatHealthy.entitlements; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 			files = (
 				F20228281EC70F910062CA72 /* UserNotifications.framework in Frameworks */,
 				F274B89E1EC6F309002F8ECF /* Alamofire.framework in Frameworks */,
+				F20BB7061EDEFCDE00F18B67 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +121,8 @@
 		253626F51E3A831400ADD153 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F20BB7081EDEFD0700F18B67 /* SwiftyJSON.framework */,
+				F20BB7051EDEFCDE00F18B67 /* SwiftyJSON.framework */,
 				F20228271EC70F910062CA72 /* UserNotifications.framework */,
 				F274B89D1EC6F309002F8ECF /* Alamofire.framework */,
 			);

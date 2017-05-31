@@ -1,2 +1,2 @@
 github "Alamofire/Alamofire" ~> 4.4
-github "trivago/Heimdallr.swift" ~> 3.6
+github "SwiftyJSON/SwiftyJSON"

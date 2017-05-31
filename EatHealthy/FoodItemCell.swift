@@ -10,6 +10,6 @@ import UIKit
 
 class FoodItemCell: UICollectionViewCell {
     
-    @IBOutlet weak var iconView: UIImageView!
-    
+    @IBOutlet weak var foodName: UILabel!
+        
 }

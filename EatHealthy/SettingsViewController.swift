@@ -31,6 +31,7 @@ class SettingsViewController: UIViewController {
             // ================================================================
             let viewController = self.storyboard?.instantiateViewController(withIdentifier: "navController") as! UINavigationController
             self.present(viewController, animated: true, completion: nil)
+            UserDefaults.standard.set(nil, forKey: "token")
         }))
         logOutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(logOutAlert, animated: true, completion: nil)

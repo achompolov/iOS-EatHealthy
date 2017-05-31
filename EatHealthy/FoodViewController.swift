@@ -8,29 +8,112 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 fileprivate let reuseIdentifier = "foodItem"
 
-class FoodViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+// Search, get food and info
+fileprivate let foodUrl = "https://nutritionix-api.p.mashape.com/v1_1/search/"
+fileprivate let foodHeaders: HTTPHeaders = [
+    "X-Mashape-Key": "f9tu0vzpSzmsh1sGYORDSymL5bnHp1yylpQjsnTql6OnZMnF9O",
+    "Accept": "application/json"
+]
 
+class FoodViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
+
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var quantityLabel: UILabel!
-    @IBOutlet weak var kcalLabel: UILabel!
-    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var gramsLabel: UILabel!
     @IBOutlet weak var quantityStepper: UIStepper!
+    
+    var productsCount: Int = 0
+    var itemsArray: Array<String> = []
+    var itemsCalories: Array<Int> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        searchBar.delegate = self
+
         setupCollectionViewCells()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.itemsArray.removeAll()
+        self.itemsCalories.removeAll()
+        let phrase = "apple"
+        
+        Alamofire.request("\(foodUrl)\(phrase)?fields=item_name%2Cnf_calories", method: .get, headers: foodHeaders).responseJSON { response in
+            guard response.result.isSuccess else {
+                print()
+                return
+            }
+            let jsonData = JSON(response.result.value!)
+            
+            let jsonProducts = jsonData["hits"]
+            let jsonProductsCount = jsonData["hits"].count
+            self.productsCount = jsonProductsCount
+            
+            print(self.productsCount)
+            
+            //print(jsonProducts)
+            
+            for(key, value):(String, JSON) in jsonProducts {
+                for (primaryKey, primaryValue):(String, JSON) in value {
+                    for (secondaryKey, secondaryValue):(String, JSON) in primaryValue {
+                        if(secondaryKey == "item_name") {
+                            let productName = secondaryValue.string
+                            self.itemsArray.append(productName!)
+                        }else if(secondaryKey == "nf_calories") {
+                            let productCalories = secondaryValue.int
+                            self.itemsCalories.append(productCalories!)
+                        }
+                    }
+                }
+            }
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.itemsArray.removeAll()
+        self.itemsCalories.removeAll()
+        let phrase = self.searchBar.text!
+        
+        Alamofire.request("\(foodUrl)\(phrase)?fields=item_name%2Cnf_calories", method: .get, headers: foodHeaders).responseJSON { response in
+            guard response.result.isSuccess else {
+                print()
+                return
+            }
+            let jsonData = JSON(response.result.value!)
+            
+            let jsonProducts = jsonData["hits"]
+            let jsonProductsCount = jsonData["hits"].count
+            self.productsCount = jsonProductsCount
+            
+            //print(self.productsCount)
+            //print(jsonProducts)
+            
+            for(key, value):(String, JSON) in jsonProducts {
+                for (primaryKey, primaryValue):(String, JSON) in value {
+                    for (secondaryKey, secondaryValue):(String, JSON) in primaryValue {
+                        if(secondaryKey == "item_name") {
+                            let productName = secondaryValue.string
+                            self.itemsArray.append(productName!)
+                        }else if(secondaryKey == "nf_calories") {
+                            let productCalories = secondaryValue.int
+                            self.itemsCalories.append(productCalories!)
+                        }
+                    }
+                }
+            }
+            self.collectionView.reloadData()
+        }
     }
     
     func setupCollectionViewCells() {
@@ -41,22 +124,26 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
         let itemHeight = 70
         
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         
         collectionView.collectionViewLayout = layout
-    }	
-    
+    }
     
     
     // MARK: UICollectionViewDataSource
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return FoodManager.sharedInstance.foodCount
+        return self.productsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FoodItemCell else { fatalError() }
+        
+        let itemName = itemsArray[indexPath.row]
+        let itemCalories = String(itemsCalories[indexPath.row])
+        
+        cell.foodName.text = itemName
+        cell.caloriesLabel.text = itemCalories
         
         return cell
     }
@@ -66,9 +153,9 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         updateCell(having: indexPath, selected: true)
         
-        quantityStepper.value = 1
-        
-        updateDisplayWith(itemQuantity: 1)
+        quantityStepper.value = 100
+        updateDisplayWith(cellIndex: indexPath.row, gramsValue: 100)
+        //UserDefaults.standard.set(indexPath.row, forKey: "cellIndex")
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -90,70 +177,21 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
     // Change item quantity
     // ====================================================================================
     @IBAction func updateQuantity(_ sender: UIStepper) {
-        let quantity = Int(quantityStepper.value)
-        updateDisplayWith(itemQuantity: quantity)
+        let grams = Int(quantityStepper.value)
+        
+        updateDisplayWith(cellIndex: 1 ,gramsValue: grams)
     }
     
     // Update text and number displays
     // ====================================================================================
-    func updateDisplayWith(itemName: String? = nil, itemQuantity: Int? = nil) {
-        
-        if let foodName = itemName {
-            switch foodName {
-            case "candyBar":
-                itemNameLabel.text = "Candy Bar"
-                kcalLabel.text = "200"
-                gramsLabel.text = "(23 g)"
-            case "chips":
-                itemNameLabel.text = "Chips"
-                kcalLabel.text = "199"
-                gramsLabel.text = "(22 g)"
-            case "cookie":
-                itemNameLabel.text = "Cookie"
-                kcalLabel.text = "189"
-                gramsLabel.text = "(34 g)"
-            case "dietSoda":
-                itemNameLabel.text = "Diet Soda"
-                kcalLabel.text = "900"
-                gramsLabel.text = "(500 g)"
-            case "fruitJuice":
-                itemNameLabel.text = "Fruit Juice"
-                kcalLabel.text = "211"
-                gramsLabel.text = "(500 g)"
-            case "popTart":
-                itemNameLabel.text = "Pop Tart"
-                kcalLabel.text = "300"
-                gramsLabel.text = "(100 g)"
-            case "sandwich":
-                itemNameLabel.text = "Sandwich"
-                kcalLabel.text = "200"
-                gramsLabel.text = "(23 g)"
-            case "soda":
-                itemNameLabel.text = "Soda"
-                kcalLabel.text = "800"
-                gramsLabel.text = "(180 g)"
-            case "sportsDrink":
-                itemNameLabel.text = "Sports Drink"
-                kcalLabel.text = "50"
-                gramsLabel.text = "(500 g)"
-            case "water":
-                itemNameLabel.text = "Water"
-                kcalLabel.text = "200"
-                gramsLabel.text = "(500 g)"
-            case "wrap":
-                itemNameLabel.text = "Wrap"
-                kcalLabel.text = "199"
-                gramsLabel.text = "(183 g)"
-            default:
-                kcalLabel.text = "0"
-                gramsLabel.text = "(0 g)"
-            }
-        }
-        
-
-        if let quantityValue = itemQuantity {
-            quantityLabel.text = "\(quantityValue)"
-        }
-        
+    func updateDisplayWith(cellIndex: Int, gramsValue: Int) {
+       let caloriesValue = itemsCalories[cellIndex]/100 * gramsValue
+        caloriesLabel.text = String(Int(caloriesValue))
+        gramsLabel.text = String(describing: Int(gramsValue))
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

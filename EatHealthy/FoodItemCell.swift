@@ -11,5 +11,6 @@ import UIKit
 class FoodItemCell: UICollectionViewCell {
     
     @IBOutlet weak var foodName: UILabel!
-        
+    @IBOutlet weak var caloriesLabel: UILabel!
+    
 }

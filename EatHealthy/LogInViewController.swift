@@ -143,7 +143,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 let token = jsonData.value(forKey: "data") as! String
                 
                 if apiStatusCode == 200 {
-                    UserDefaults.standard.set(true, forKey: "hasToken")
                     UserDefaults.standard.set(token, forKey: "token")
                     
                     // Present FoodViewController

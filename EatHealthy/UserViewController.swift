@@ -25,8 +25,8 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.white.cgColor
         
-        let hasToken = UserDefaults.standard.bool(forKey: "hasToken")
-        if hasToken == true {
+
+        if UserDefaults.standard.string(forKey: "token") != nil  {
             profileImage.backgroundColor = UIColor.blue
         } else {
             profileImage.backgroundColor = UIColor.red

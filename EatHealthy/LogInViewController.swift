@@ -11,7 +11,7 @@ import Alamofire
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
-    let loginURL = "http://93.152.131.62/api/v1/clients/login"
+    let loginURL = "http://10.0.3.248/api/v1/clients/login"
     
     
     @IBOutlet weak var logInUsernameTextField: UITextField!
@@ -122,6 +122,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     // Send the log in form to the server
     // ====================================================================================
     @IBAction func logInButtonClicked(_ sender: Any) {
+        // Present FoodViewController
+        // ================================================================
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+        present(viewController, animated: true, completion: nil)
         
         let parameters: Parameters = [
             "email": logInUsernameTextField.text!,

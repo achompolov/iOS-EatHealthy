@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -19,7 +20,8 @@ class ViewController: UIViewController {
         // Add the gradient background
         // =======================================
         gradientBackground()
-    }
+        
+}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -20,22 +20,6 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var gramsLabel: UILabel!
     @IBOutlet weak var quantityStepper: UIStepper!
     
-    let foodSelector: FoodSelector
-    
-    required init?(coder aDecoder: NSCoder) {
-        do {
-            let dictionary = try PlistConverter.dictionary(fromFile: "FoodList", ofType: "plist")
-            let inventory = try InventoryUnarchiver.userInventory(fromDictionary: dictionary)
-            self.foodSelector = FoodSelected(inventory: inventory)
-        } catch let error {
-            fatalError("\(error)")
-        }
-        
-        super.init(coder: aDecoder)
-    }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,14 +53,11 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
     // MARK: UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return foodSelector.selection.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FoodItemCell else { fatalError() }
-        
-        let item = foodSelector.selection[indexPath.row]
-        cell.iconView.image = item.icon()
         
         return cell
     }
@@ -87,11 +68,8 @@ class FoodViewController: UIViewController, UICollectionViewDataSource, UICollec
         updateCell(having: indexPath, selected: true)
         
         quantityStepper.value = 1
-
-        let food = foodSelector.selection[indexPath.row]
-        //let foodName = food.itemName()
         
-        updateDisplayWith(itemName: food.itemName(), itemQuantity: 1)
+        updateDisplayWith(itemQuantity: 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

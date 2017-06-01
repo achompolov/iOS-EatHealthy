@@ -21,6 +21,9 @@ target 'EatHealthy' do
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
 
+    # Pods for LocalNotifications
+    pod 'LNRSimpleNotifications'
+
     # Pods for UI
     pod 'SwiftMessages'
     pod 'Charts'

@@ -39,11 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
             application.registerForRemoteNotifications()
         }
-            // iOS 7 support
-        else {  
-            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
-        }
-
         return true
     }
 
@@ -91,5 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return handled
     }
+
+    
+    
 }
 

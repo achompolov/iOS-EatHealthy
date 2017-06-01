@@ -18,6 +18,13 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nameLabel: UILabel!
     
+    var days: [String]! = []
+    var weeks: [String]! = []
+    var months: [String]! = []
+    var caloriesByDay: [Double] = []
+    var caloriesByWeek: [Double] = []
+    var caloriesByMonth: [Double] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,16 +83,29 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CalorieGraphCollectionViewCell
         
-        let monts: [String]! = ["Jan","Feb","Mar","Apr"]
-        let unitsSold = [20.0, 50.0, 6.0, 12.0]
-        
-        cell.setChart(dataPoints: monts, values: unitsSold)
+        switch indexPath.row {
+        case 0:
+            days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+            caloriesByDay = [1252.0, 985.0, 2450.0, 1604.0, 734.0, 1325.0, 2623.0]
+            
+            cell.setChart(dataPoints: days, values: caloriesByDay)
+        case 1:
+            weeks = ["First", "Seconds", "Third", "Fourth"]
+            caloriesByWeek = [14245.0, 9341.0, 2343.0, 5431.0]
+            cell.setChart(dataPoints: weeks, values: caloriesByWeek)
+        case 2:
+            months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            caloriesByMonth = [40321.0, 54738.0, 75938.0, 19583.0, 57302.0, 47917.0, 37194.0, 96843.0, 57391.0, 85729.0, 16382.0, 37194.0]
+            cell.setChart(dataPoints: months, values: caloriesByMonth)
+        default:
+            cell.setChart(dataPoints: [], values: [])
+        }
         
         return cell
     }

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3EDF03FE07ABD18966FC5630D900E259'
-               BlueprintName = 'SwiftyJSON'
+               BlueprintIdentifier = '1EC5B372950A2392C0E5B4C224FD502D'
+               BlueprintName = 'LNRSimpleNotifications'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftyJSON.framework'>
+               BuildableName = 'LNRSimpleNotifications.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -49,6 +49,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
+  - LNRSimpleNotifications (0.6.1)
   - SwiftMessages (3.3.3)
   - SwiftyJSON (3.1.4)
 
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Storage
+  - LNRSimpleNotifications
   - SwiftMessages
   - SwiftyJSON
 
@@ -78,9 +80,10 @@ SPEC CHECKSUMS:
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  LNRSimpleNotifications: 4602ddc63444b42b1653681730678af1585c5fa3
   SwiftMessages: 09cea3336e3fb63c3578983c8aac65acaa6d884a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 97d426b3fe22f40efde733eb29533f081434d750
+PODFILE CHECKSUM: 12890b23ea6ad8d67992dc4b8836d46833f12de2
 
 COCOAPODS: 1.2.1

@@ -50,6 +50,8 @@ class ViewController: UIViewController {
         ]
         view.layer.insertSublayer(gradientBackground, at: 0) //Adding the background layer at z-index 0
     }
+    
+    
 
     
 }

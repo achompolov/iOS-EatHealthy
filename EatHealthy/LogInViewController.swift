@@ -114,7 +114,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     let view = MessageView.viewFromNib(layout: .StatusLine)
                     view.configureTheme(.success)
                     view.configureDropShadow()
-                    view.configureContent(title: "Success", body: "We have sent you and email.")
+                    view.configureContent(title: "Success", body: "We have sent you a verification email.")
                     SwiftMessages.show(view: view)
                 }
             })

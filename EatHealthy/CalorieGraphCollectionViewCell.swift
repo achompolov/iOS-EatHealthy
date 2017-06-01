@@ -20,10 +20,15 @@ class CalorieGraphCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
         barChartView.xAxis.granularity = 1
         barChartView.xAxis.labelPosition = .bottom
-        barChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
-        barChartView.animate(xAxisDuration: 2.0)
-        barChartView.animate(yAxisDuration: 2.0)
-        
+        barChartView.backgroundColor = UIColor(red: 98/255, green: 156/255, blue: 194/255, alpha: 1)
+        barChartView.animate(xAxisDuration: 3.0)
+        barChartView.animate(yAxisDuration: 3.0)
+        barChartView.leftAxis.drawGridLinesEnabled = false
+        barChartView.rightAxis.drawGridLinesEnabled = false
+    
+        barChartView.rightAxis.drawLabelsEnabled = false
+        barChartView.legend.enabled = false
+        barChartView.doubleTapToZoomEnabled = false
         
         var dataEntries: [BarChartDataEntry] = []
         

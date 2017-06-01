@@ -15,6 +15,7 @@
 		F20228281EC70F910062CA72 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20228271EC70F910062CA72 /* UserNotifications.framework */; };
 		F203F88E1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F203F88D1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift */; };
 		F234FF3A1EDF826D00EB8187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F234FF391EDF826D00EB8187 /* GoogleService-Info.plist */; };
+		F234FF3D1EE05E0900EB8187 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F234FF3C1EE05E0900EB8187 /* SearchViewController.swift */; };
 		F257F9DD1EDCC5D60015D665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */; };
 		F29D1EF41EDA14CD00F34D5D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29D1EF31EDA14CC00F34D5D /* UserViewController.swift */; };
 		F2E81AC11E0B462700258FFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E81AC01E0B462700258FFF /* AppDelegate.swift */; };
@@ -56,6 +57,7 @@
 		F20BB7051EDEFCDE00F18B67 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		F234FF361EDF807500EB8187 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Carthage/Build/iOS/FirebaseCore.framework; sourceTree = "<group>"; };
 		F234FF391EDF826D00EB8187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F234FF3C1EE05E0900EB8187 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F274B89D1EC6F309002F8ECF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F288ECA61EBF0964001D6187 /* EatHealthy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EatHealthy.entitlements; sourceTree = "<group>"; };
@@ -148,6 +150,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F234FF3B1EE05DDE00EB8187 /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F234FF3C1EE05E0900EB8187 /* SearchViewController.swift */,
+			);
+			name = SearchViewController;
+			sourceTree = "<group>";
+		};
 		F257F9DB1EDCC5B60015D665 /* SettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				F288ECA61EBF0964001D6187 /* EatHealthy.entitlements */,
+				F234FF3B1EE05DDE00EB8187 /* SearchViewController */,
 				F257F9DB1EDCC5B60015D665 /* SettingsViewController */,
 				25DDD6891E3EFAFF00F6353D /* SignUpViewController */,
 				25DDD6881E3EFAE800F6353D /* LogInViewController */,
@@ -426,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F234FF3D1EE05E0900EB8187 /* SearchViewController.swift in Sources */,
 				25DDD6821E3ED67100F6353D /* FoodViewController.swift in Sources */,
 				F29D1EF41EDA14CD00F34D5D /* UserViewController.swift in Sources */,
 				25DDD6841E3EDA0000F6353D /* FoodItemCell.swift in Sources */,

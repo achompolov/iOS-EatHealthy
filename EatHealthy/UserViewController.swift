@@ -76,13 +76,17 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CalorieGraphCollectionViewCell
         
+        let monts: [String]! = ["Jan","Feb","Mar","Apr"]
+        let unitsSold = [20.0, 50.0, 6.0, 12.0]
+        
+        cell.setChart(dataPoints: monts, values: unitsSold)
+        
         return cell
     }
-    
 }

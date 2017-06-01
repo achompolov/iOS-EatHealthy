@@ -46,7 +46,6 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
-        updateCell(having: IndexPath(row: cellId, section: 0), selected: false)
     }
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)
@@ -58,9 +57,8 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         itemsArray.removeAll()
         itemsCalories.removeAll()
-        let phrase = "apple"
-        
-        Alamofire.request("\(foodUrl)\(phrase)?fields=item_name%2Cnf_calories", method: .get, headers: foodHeaders).responseJSON { response in
+
+        Alamofire.request("\(foodUrl)?fields=item_name%2Cnf_calories", method: .get, headers: foodHeaders).responseJSON { response in
             guard response.result.isSuccess else {
                 print()
                 return

@@ -110,18 +110,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     view.configureDropShadow()
                     view.configureContent(title: "Failed", body: "Invalid email address please try again.")
                     SwiftMessages.show(view: view)
-                    //let emailAlert = UIAlertController(title: "Error", message: "Invalid email address please try again.", preferredStyle: UIAlertControllerStyle.alert)
-                    //emailAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    //self.present(emailAlert, animated: true, completion: nil)
                 } else {
                     let view = MessageView.viewFromNib(layout: .StatusLine)
                     view.configureTheme(.success)
                     view.configureDropShadow()
                     view.configureContent(title: "Success", body: "We have sent you and email.")
                     SwiftMessages.show(view: view)
-                    //let emailAlert = UIAlertController(title: "Success", message: "We have sent you and email.", preferredStyle: UIAlertControllerStyle.alert)
-                    //emailAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    //self.present(emailAlert, animated: true, completion: nil)
                 }
             })
         }))
@@ -197,10 +191,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         if logInUsernameTextField.text == "" || logInPasswordTextField.text == "" {
             //Alert to tell the user that there was an error because they didn't fill anything in the textfields because they didn't fill anything in
-            let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            present(alertController, animated: true, completion: nil)
+            let view = MessageView.viewFromNib(layout: .StatusLine)
+            view.configureTheme(.warning)
+            view.configureDropShadow()
+            view.configureContent(title: "Warning", body: "Please enter an email and password.")
+            SwiftMessages.show(view: view)
         } else {
             Auth.auth().signIn(withEmail: logInUsernameTextField.text!, password: logInPasswordTextField.text!) { (user, error) in
                 if error == nil {
@@ -214,11 +209,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
                     self.present(viewController, animated: true, completion: nil)
                 } else {
-                    //Tells the user that there is an error and then gets firebase to tell them the error
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    let view = MessageView.viewFromNib(layout: .StatusLine)
+                    view.configureTheme(.warning)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Warning", body: (error?.localizedDescription)!)
+                    SwiftMessages.show(view: view)
                 }
             }
         }

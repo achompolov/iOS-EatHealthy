@@ -23,5 +23,6 @@ target 'EatHealthy' do
 
     # Pods for UI
     pod 'SwiftMessages'
+    pod 'Charts'
 
 end

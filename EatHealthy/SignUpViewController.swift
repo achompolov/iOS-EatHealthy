@@ -11,6 +11,7 @@ import Alamofire
 import Firebase
 import FirebaseAuth
 import FBSDKLoginKit
+import SwiftMessages
 
 fileprivate let registerURL = "http://93.152.131.62/api/v1/clients/register"
 
@@ -91,19 +92,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         gradientBackground() //Gradient background
         
         // Add the delegate to the TextField
-        self.signUpNameTextField.delegate = self
-        self.signUpEmailTextField.delegate = self
-        self.signUpUsernameTextField.delegate = self
-        self.signUpPasswordTextField.delegate = self
-        self.signUpConfirmPasswordTextField.delegate = self
-        self.signUpBirthDate.delegate = self
-        self.signUpGender.delegate = self
+        signUpNameTextField.delegate = self
+        signUpEmailTextField.delegate = self
+        signUpUsernameTextField.delegate = self
+        signUpPasswordTextField.delegate = self
+        signUpConfirmPasswordTextField.delegate = self
+        signUpBirthDate.delegate = self
+        signUpGender.delegate = self
         
+        signUpButton.isEnabled = false
+        signUpNameTextField.isEnabled = false
+        signUpConfirmPasswordTextField.isEnabled = false
+        signUpUsernameTextField.isEnabled = false
+        signUpBirthDate.isEnabled = false
+        signUpGender.isEnabled = false
+        
+        changeTextFieldsColor()
         toBirthDatePicker() //DatePickerView from signUpBirthDate
         toGenderPicker() //PickerView from signUpGender
         addClearButtonToTextFields() //Clear button to UITextFields
-        
-        signUpButton.isEnabled = false
     }
     
     
@@ -155,13 +162,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     // Form validation and signUpButton enable
     // ====================================================================================
     func validateSignUpForm() -> Bool {
-        if( ((signUpEmailTextField.text?.isEmpty)!) ||
+        if( (signUpEmailTextField.text?.isEmpty)! || (signUpPasswordTextField.text?.isEmpty)! )
+            /*((signUpEmailTextField.text?.isEmpty)!) ||
             ((signUpNameTextField.text?.isEmpty)!) ||
             ((signUpUsernameTextField.text?.isEmpty)!) ||
             ((signUpPasswordTextField.text?.isEmpty)!) ||
             ((signUpConfirmPasswordTextField.text?.isEmpty)!) ||
             ((signUpBirthDate.text?.isEmpty)!) ||
-            ((signUpGender.text?.isEmpty)!)) {
+            ((signUpGender.text?.isEmpty)!)) */ {
             return false
         }else {
             return true
@@ -180,25 +188,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBAction func signUpButtonClicked(_ sender: Any) {
 
         if signUpEmailTextField.text == "" {
-            let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            present(alertController, animated: true, completion: nil)
-            
+            let view = MessageView.viewFromNib(layout: .StatusLine)
+            view.configureTheme(.warning)
+            view.configureDropShadow()
+            view.configureContent(title: "Warning", body: "Please enter email and password.")
+            SwiftMessages.show(view: view)
         } else {
             Auth.auth().createUser(withEmail: signUpEmailTextField.text!, password: signUpPasswordTextField.text!) { (user, error) in
                 if error == nil {
-                    print("You have successfully signed up")
+                    let view = MessageView.viewFromNib(layout: .StatusLine)
+                    view.configureTheme(.success)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Success", body: "We have sent you a verification email.")
+                    SwiftMessages.show(view: view)
                     //Goes to the Setup page which lets the user take a photo for their profile picture and also chose a username
-                    let viewcontroller = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
-                    self.present(viewcontroller, animated: true, completion: nil)
-                    
+                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "navController") as! UINavigationController
+                    self.present(viewController, animated: true, completion: nil)
                 } else {
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
-                }
+                    let view = MessageView.viewFromNib(layout: .StatusLine)
+                    view.configureTheme(.warning)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Warning", body: (error?.localizedDescription)!)
+                    SwiftMessages.show(view: view)                }
             }
         }
 
@@ -307,6 +318,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             signUpButton.backgroundColor = UIColor.white
             signUpButton.isEnabled = true
         }
+    }
+    
+    func changeTextFieldsColor() {
+        signUpNameTextField.backgroundColor = UIColor(red: 117/255.0, green: 117/255.0, blue: 117/255.0, alpha: 1.0)
+        signUpUsernameTextField.backgroundColor = UIColor(red: 117/255.0, green: 117/255.0, blue: 117/255.0, alpha: 1.0)
+        signUpConfirmPasswordTextField.backgroundColor = UIColor(red: 117/255.0, green: 117/255.0, blue: 117/255.0, alpha: 1.0)
+        signUpBirthDate.backgroundColor = UIColor(red: 117/255.0, green: 117/255.0, blue: 117/255.0, alpha: 1.0)
+        signUpGender.backgroundColor = UIColor(red: 117/255.0, green: 117/255.0, blue: 117/255.0, alpha: 1.0)
     }
 }
 

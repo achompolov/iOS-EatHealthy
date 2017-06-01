@@ -10,18 +10,17 @@ import UIKit
 import Alamofire
 import Firebase
 import FirebaseAuth
+import FBSDKLoginKit
+import SwiftMessages
+
+fileprivate let loginURL = "http://10.0.3.248/api/v1/clients/login"
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
-    let loginURL = "http://10.0.3.248/api/v1/clients/login"
-    
-    
     @IBOutlet weak var logInUsernameTextField: UITextField!
     @IBOutlet weak var logInPasswordTextField: UITextField!
-    
     @IBOutlet weak var logInButton: UIButton!
-    
-    @IBOutlet weak var labelMessage: UILabel!
+    @IBOutlet weak var facebookButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +29,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         gradientBackground()//Gradient background
         
         /* Add the delegate to the TextField */
-        self.logInUsernameTextField.delegate = self
-        self.logInPasswordTextField.delegate = self
+        logInUsernameTextField.delegate = self
+        logInPasswordTextField.delegate = self
         
         addClearButtonToTextField() //Clear buttons
         
         logInButton.isEnabled = false
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,7 +96,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     // Forgot your username or password alert
     // ====================================================================================
     @IBAction func forgotUsernameOrPasswordAlert() {
-        let alertController = UIAlertController(title: "Forgot your username or password?", message: "This function will be added in later state of the application.", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Forgot your username or password?", message: "Please enter your email to so we can send you a reset link.", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addTextField { (textField: UITextField) -> Void in
             textField.placeholder = "Enter email"
         }
@@ -104,6 +104,25 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
             let email = alertController.textFields?.first?.text
             Auth.auth().sendPasswordReset(withEmail: email!, completion: { (error) in
+                if error != nil {
+                    let view = MessageView.viewFromNib(layout: .StatusLine)
+                    view.configureTheme(.warning)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Failed", body: "Invalid email address please try again.")
+                    SwiftMessages.show(view: view)
+                    //let emailAlert = UIAlertController(title: "Error", message: "Invalid email address please try again.", preferredStyle: UIAlertControllerStyle.alert)
+                    //emailAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    //self.present(emailAlert, animated: true, completion: nil)
+                } else {
+                    let view = MessageView.viewFromNib(layout: .StatusLine)
+                    view.configureTheme(.success)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Success", body: "We have sent you and email.")
+                    SwiftMessages.show(view: view)
+                    //let emailAlert = UIAlertController(title: "Success", message: "We have sent you and email.", preferredStyle: UIAlertControllerStyle.alert)
+                    //emailAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    //self.present(emailAlert, animated: true, completion: nil)
+                }
             })
         }))
         present(alertController, animated: true, completion: nil)
@@ -126,7 +145,53 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    // Send the log in form to the server
+    
+    // Facebook Log in
+    @IBAction func facebookLogIn(_ sender: Any) {
+        let fbLoginManager = FBSDKLoginManager()
+
+        fbLoginManager.logOut()
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            if let error = error {
+                print("Failed to login: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let accessToken = FBSDKAccessToken.current() else {
+                print("Failed to get access token")
+                return
+            }
+            
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+            
+            // Perform login by calling Firebase APIs
+            Auth.auth().signIn(with: credential, completion: { (user, error) in
+                if let error = error {
+                    print("Login error: \(error.localizedDescription)")
+                    let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(okayAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    return
+                }
+                let view = MessageView.viewFromNib(layout: .StatusLine)
+                view.configureTheme(.success)
+                view.configureDropShadow()
+                view.configureContent(title: "Success", body: "Successfully logged in.")
+                SwiftMessages.show(view: view)
+                // Present the main view
+                if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") {
+                    UIApplication.shared.keyWindow?.rootViewController = viewController
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
+        }
+    }
+    
+    
+    
+    // Log in
     // ====================================================================================
     @IBAction func logInButtonClicked(_ sender: Any) {
         
@@ -139,8 +204,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         } else {
             Auth.auth().signIn(withEmail: logInUsernameTextField.text!, password: logInPasswordTextField.text!) { (user, error) in
                 if error == nil {
-                    //Print into the console if successfully logged in
-                    print("You have successfully logged in")
+                    // Show success login status
+                    let view = MessageView.viewFromNib(layout: .StatusLine)
+                    view.configureTheme(.success)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Success", body: "Successfully logged in.")
+                    SwiftMessages.show(view: view)
                     //Go to the HomeViewController if the login is sucessful
                     let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
                     self.present(viewController, animated: true, completion: nil)

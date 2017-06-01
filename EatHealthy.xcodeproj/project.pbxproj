@@ -190,7 +190,6 @@
 		F2E81ABF1E0B462700258FFF /* EatHealthy */ = {
 			isa = PBXGroup;
 			children = (
-				F234FF391EDF826D00EB8187 /* GoogleService-Info.plist */,
 				F288ECA61EBF0964001D6187 /* EatHealthy.entitlements */,
 				F257F9DB1EDCC5B60015D665 /* SettingsViewController */,
 				25DDD6891E3EFAFF00F6353D /* SignUpViewController */,
@@ -203,6 +202,7 @@
 				F2E81AC71E0B462700258FFF /* Assets.xcassets */,
 				F2E81AC91E0B462700258FFF /* LaunchScreen.storyboard */,
 				F2E81ACC1E0B462700258FFF /* Info.plist */,
+				F234FF391EDF826D00EB8187 /* GoogleService-Info.plist */,
 			);
 			path = EatHealthy;
 			sourceTree = "<group>";

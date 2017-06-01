@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
+import SwiftMessages
 
 class ViewController: UIViewController {
     
@@ -17,8 +20,7 @@ class ViewController: UIViewController {
         // Add the gradient background
         // =======================================
         gradientBackground()
-        
-}
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

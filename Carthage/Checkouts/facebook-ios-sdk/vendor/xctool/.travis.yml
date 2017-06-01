@@ -1,9 +1,0 @@
-osx_image: xcode8
-language: objective-c
-before_script:
-  - brew tap caskroom/cask
-  - brew tap caskroom/versions
-  - brew update
-  - brew cask install java7
-  - brew install ant
-script: ./scripts/travis-ci.sh

@@ -10,10 +10,11 @@ import UIKit
 import Alamofire
 import Firebase
 import FirebaseAuth
+import FBSDKLoginKit
+
+fileprivate let registerURL = "http://93.152.131.62/api/v1/clients/register"
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    let registerURL = "http://93.152.131.62/api/v1/clients/register"
     
     @IBOutlet weak var signUpNameTextField: UITextField!
     @IBOutlet weak var signUpEmailTextField: UITextField!
@@ -22,10 +23,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var signUpConfirmPasswordTextField: UITextField!
     @IBOutlet weak var signUpBirthDate: UITextField!
     @IBOutlet weak var signUpGender: UITextField!
-    
     @IBOutlet weak var signUpButton: UIButton!
-    
-    @IBOutlet weak var labelMessage: UILabel!
+    @IBOutlet weak var facebookLogin: UIButton!
     
     // signUpBirthDate: UITextField to UIDatePicker on editing
     // ====================================================================================
@@ -254,6 +253,43 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 }
             }
         }*/
+    }
+    @IBAction func facebookLogin(_ sender: Any) {
+        let fbLoginManager = FBSDKLoginManager()
+        
+        fbLoginManager.logOut()
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "user_birthday"], from: self) { (result, error) in
+            if let error = error {
+                print("Failed to login: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let accessToken = FBSDKAccessToken.current() else {
+                print("Failed to get access token")
+                return
+            }
+            
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+            
+            // Perform login by calling Firebase APIs
+            Auth.auth().signIn(with: credential, completion: { (user, error) in
+                if let error = error {
+                    print("Login error: \(error.localizedDescription)")
+                    let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(okayAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    return
+                }
+                
+                // Present the main view
+                if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") {
+                    UIApplication.shared.keyWindow?.rootViewController = viewController
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
+        }
     }
     
     // Change to LogInViewController

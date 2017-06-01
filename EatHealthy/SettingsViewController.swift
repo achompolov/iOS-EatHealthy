@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SwiftMessages
 
 class SettingsViewController: UIViewController {
 
@@ -31,9 +32,13 @@ class SettingsViewController: UIViewController {
             if Auth.auth().currentUser != nil {
                 do {
                     try Auth.auth().signOut()
+                    let view = MessageView.viewFromNib(layout: .StatusLine)
+                    view.configureTheme(.success)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Success", body: "Successfully logged out.")
+                    SwiftMessages.show(view: view)
                     let viewController = self.storyboard?.instantiateViewController(withIdentifier: "navController") as! UINavigationController
                     self.present(viewController, animated: true, completion: nil)
-                    
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
@@ -41,9 +46,6 @@ class SettingsViewController: UIViewController {
         }))
         logOutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(logOutAlert, animated: true, completion: nil)
-
-        
-
     }
 
     /*

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SwiftMessages
 
 fileprivate let reuseIdentifier = "foodItem"
 
@@ -45,9 +46,11 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
+        updateCell(having: IndexPath(row: cellId, section: 0), selected: false)
     }
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)
+        updateCell(having: IndexPath(row: cellId, section: 0), selected: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,13 +90,18 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
             }
             self.collectionView.reloadData()
         }
+        
+        updateCell(having: IndexPath(row: cellId, section: 0), selected: false)
     }
     
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        
         self.itemsArray.removeAll()
         self.itemsCalories.removeAll()
         let phrase = self.searchBar.text!
+        
         
         Alamofire.request("\(foodUrl)\(phrase)?fields=item_name%2Cnf_calories", method: .get, headers: foodHeaders).responseJSON { response in
             guard response.result.isSuccess else {
@@ -124,6 +132,8 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
             }
             self.collectionView.reloadData()
         }
+        
+        updateCell(having: IndexPath(row: cellId, section: 0), selected: false)
     }
     
     func setupCollectionViewCells() {
@@ -182,6 +192,10 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
         if let cell = collectionView.cellForItem(at: indexPath) {
             cell.contentView.backgroundColor = selected ? selectedBackgroundColor : defaultBackgroundColor
         }
+        if !selected {
+            caloriesLabel.text = ""
+            gramsLabel.text = ""
+        }
     }
     
     // Change item quantity
@@ -195,10 +209,31 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
     // Update text and number displays
     // ====================================================================================
     func updateDisplayWith(cellIndex: Int, gramsValue: Int) {
-       let caloriesValue = Double(itemsCalories[cellIndex])/100 * Double(gramsValue)
+        let caloriesValue = Double(itemsCalories[cellIndex])/100 * Double(gramsValue)
         caloriesLabel.text = String(Int(caloriesValue))
         gramsLabel.text = String(describing: Int(gramsValue))
     }
+    
+    // Add foods to diary
+    // ====================================================================================
+    @IBAction func addToDiary(_ sender: Any) {
+        let view = MessageView.viewFromNib(layout: .StatusLine)
+        view.configureTheme(.success)
+        view.configureDropShadow()
+        view.configureContent(title: "Success", body: "Food has been added to your diary.")
+        SwiftMessages.show(view: view)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -6,9 +6,22 @@ target 'EatHealthy' do
   use_frameworks!
 
   # Pods for EatHealthy
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
+
+    # Pods for Firebase
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+
+    # Pods for HTTP
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
+
+    # Pods for Facebook
+    pod 'Bolts'
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKLoginKit'
+
+    # Pods for UI
+    pod 'SwiftMessages'
 
 end

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import Firebase
 import FirebaseAuth
 
@@ -16,9 +17,6 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var birthDateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +27,7 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         profileImage.clipsToBounds = true
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.white.cgColor
-        
-
-        if UserDefaults.standard.string(forKey: "token") != nil  {
-            profileImage.backgroundColor = UIColor.blue
-        } else {
-            profileImage.backgroundColor = UIColor.red
-        }
-        
+        profileImage.backgroundColor = UIColor.darkGray
         
         setupCollectionViewCells()
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -44,9 +35,23 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         // Get user info
-        let user = Auth.auth().currentUser
-        if let user = user {
-            emailLabel.text = user.email
+        if let user = Auth.auth().currentUser {
+            if let displayName = user.displayName, let photoUrl = user.photoURL {
+                nameLabel.text = displayName
+                Alamofire.request(photoUrl).responseData { response in
+                    if let data = response.result.value {
+                        self.profileImage.image = UIImage(data: data)
+                    }
+                }
+            } else {
+                nameLabel.text = user.email
+            }
+            
+            //Alamofire.request(user.photoURL!).responseData { response in
+            //   if let data = response.result.value {
+            //        self.profileImage.image = UIImage(data: data)
+            //}
+            //}
         }
     }
     

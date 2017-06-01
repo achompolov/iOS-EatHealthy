@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import Firebase
+import FirebaseAuth
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
@@ -74,9 +76,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         default:
             textField.resignFirstResponder()
         }
-        
-        
-        
         return true
     }
     
@@ -98,7 +97,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     // ====================================================================================
     @IBAction func forgotUsernameOrPasswordAlert() {
         let alertController = UIAlertController(title: "Forgot your username or password?", message: "This function will be added in later state of the application.", preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alertController.addTextField { (textField: UITextField) -> Void in
+            textField.placeholder = "Enter email"
+        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+            let email = alertController.textFields?.first?.text
+            Auth.auth().sendPasswordReset(withEmail: email!, completion: { (error) in
+            })
+        }))
         present(alertController, animated: true, completion: nil)
     }
     
@@ -122,11 +129,32 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     // Send the log in form to the server
     // ====================================================================================
     @IBAction func logInButtonClicked(_ sender: Any) {
-        // Present FoodViewController
-        // ================================================================
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
-        present(viewController, animated: true, completion: nil)
         
+        if logInUsernameTextField.text == "" || logInPasswordTextField.text == "" {
+            //Alert to tell the user that there was an error because they didn't fill anything in the textfields because they didn't fill anything in
+            let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            present(alertController, animated: true, completion: nil)
+        } else {
+            Auth.auth().signIn(withEmail: logInUsernameTextField.text!, password: logInPasswordTextField.text!) { (user, error) in
+                if error == nil {
+                    //Print into the console if successfully logged in
+                    print("You have successfully logged in")
+                    //Go to the HomeViewController if the login is sucessful
+                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+                    self.present(viewController, animated: true, completion: nil)
+                } else {
+                    //Tells the user that there is an error and then gets firebase to tell them the error
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+
+        /* Using FIREBASE while API gets going
         let parameters: Parameters = [
             "email": logInUsernameTextField.text!,
             "password": logInPasswordTextField.text!
@@ -155,7 +183,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
-        }
+        }*/
     }
     
     // Change to SignUpViewController

@@ -28,6 +28,7 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
     @IBOutlet weak var quantityStepper: UIStepper!
     
     var productsCount: Int = 0
+    var cellId: Int = 0
     var itemsArray: Array<String> = []
     var itemsCalories: Array<Int> = []
     
@@ -42,9 +43,18 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
         setupCollectionViewCells()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        self.itemsArray.removeAll()
-        self.itemsCalories.removeAll()
+        searchBar.text = ""
+        
+        itemsArray.removeAll()
+        itemsCalories.removeAll()
         let phrase = "apple"
         
         Alamofire.request("\(foodUrl)\(phrase)?fields=item_name%2Cnf_calories", method: .get, headers: foodHeaders).responseJSON { response in
@@ -155,7 +165,7 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
         
         quantityStepper.value = 100
         updateDisplayWith(cellIndex: indexPath.row, gramsValue: 100)
-        //UserDefaults.standard.set(indexPath.row, forKey: "cellIndex")
+        cellId = indexPath.row
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -179,13 +189,13 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
     @IBAction func updateQuantity(_ sender: UIStepper) {
         let grams = Int(quantityStepper.value)
         
-        updateDisplayWith(cellIndex: 1 ,gramsValue: grams)
+        updateDisplayWith(cellIndex: cellId, gramsValue: grams)
     }
     
     // Update text and number displays
     // ====================================================================================
     func updateDisplayWith(cellIndex: Int, gramsValue: Int) {
-       let caloriesValue = itemsCalories[cellIndex]/100 * gramsValue
+       let caloriesValue = Double(itemsCalories[cellIndex])/100 * Double(gramsValue)
         caloriesLabel.text = String(Int(caloriesValue))
         gramsLabel.text = String(describing: Int(gramsValue))
     }

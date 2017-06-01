@@ -7,13 +7,18 @@
 //
 
 import UIKit
-import Charts
+import Firebase
+import FirebaseAuth
 
 fileprivate let reuseIdentifier = "calorieGraph"
 
 class UserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var birthDateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +41,12 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupCollectionViewCells()
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
+        }
+        
+        // Get user info
+        let user = Auth.auth().currentUser
+        if let user = user {
+            emailLabel.text = user.email
         }
     }
     

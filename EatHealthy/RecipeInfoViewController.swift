@@ -1,15 +1,15 @@
 //
-//  SettingsViewController.swift
+//  RecipeInfoViewController.swift
 //  EatHealthy
 //
-//  Created by Atanas Chompolov on 1/12/17.
+//  Created by Atanas Chompolov on 6/2/17.
 //  Copyright © 2017 Atanas Chompolov. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController{
-    
+class RecipeInfoViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
     /*
     // MARK: - Navigation

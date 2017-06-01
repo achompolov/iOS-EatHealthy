@@ -17,6 +17,9 @@
 		F234FF3A1EDF826D00EB8187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F234FF391EDF826D00EB8187 /* GoogleService-Info.plist */; };
 		F234FF3D1EE05E0900EB8187 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F234FF3C1EE05E0900EB8187 /* SearchViewController.swift */; };
 		F257F9DD1EDCC5D60015D665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */; };
+		F27BF5BA1EE0AA190077FC2F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BF5B91EE0AA190077FC2F /* SettingsTableViewController.swift */; };
+		F27BF5BE1EE0B85C0077FC2F /* RecipeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BF5BD1EE0B85C0077FC2F /* RecipeItemCell.swift */; };
+		F27BF5C11EE0C9390077FC2F /* RecipeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BF5C01EE0C9390077FC2F /* RecipeInfoViewController.swift */; };
 		F29D1EF41EDA14CD00F34D5D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29D1EF31EDA14CC00F34D5D /* UserViewController.swift */; };
 		F2E81AC11E0B462700258FFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E81AC01E0B462700258FFF /* AppDelegate.swift */; };
 		F2E81AC31E0B462700258FFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E81AC21E0B462700258FFF /* ViewController.swift */; };
@@ -60,6 +63,9 @@
 		F234FF3C1EE05E0900EB8187 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F274B89D1EC6F309002F8ECF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		F27BF5B91EE0AA190077FC2F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		F27BF5BD1EE0B85C0077FC2F /* RecipeItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeItemCell.swift; sourceTree = "<group>"; };
+		F27BF5C01EE0C9390077FC2F /* RecipeInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeInfoViewController.swift; sourceTree = "<group>"; };
 		F288ECA61EBF0964001D6187 /* EatHealthy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EatHealthy.entitlements; sourceTree = "<group>"; };
 		F29D1EF31EDA14CC00F34D5D /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		F2E81ABD1E0B462700258FFF /* EatHealthy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EatHealthy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +159,9 @@
 		F234FF3B1EE05DDE00EB8187 /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F27BF5BF1EE0C9100077FC2F /* ReceipeInfoViewController */,
 				F234FF3C1EE05E0900EB8187 /* SearchViewController.swift */,
+				F27BF5BD1EE0B85C0077FC2F /* RecipeItemCell.swift */,
 			);
 			name = SearchViewController;
 			sourceTree = "<group>";
@@ -162,8 +170,17 @@
 			isa = PBXGroup;
 			children = (
 				F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */,
+				F27BF5B91EE0AA190077FC2F /* SettingsTableViewController.swift */,
 			);
 			name = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		F27BF5BF1EE0C9100077FC2F /* ReceipeInfoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F27BF5C01EE0C9390077FC2F /* RecipeInfoViewController.swift */,
+			);
+			name = ReceipeInfoViewController;
 			sourceTree = "<group>";
 		};
 		F29D1EF21EDA14A700F34D5D /* UserViewController */ = {
@@ -440,12 +457,15 @@
 				F234FF3D1EE05E0900EB8187 /* SearchViewController.swift in Sources */,
 				25DDD6821E3ED67100F6353D /* FoodViewController.swift in Sources */,
 				F29D1EF41EDA14CD00F34D5D /* UserViewController.swift in Sources */,
+				F27BF5BA1EE0AA190077FC2F /* SettingsTableViewController.swift in Sources */,
+				F27BF5C11EE0C9390077FC2F /* RecipeInfoViewController.swift in Sources */,
 				25DDD6841E3EDA0000F6353D /* FoodItemCell.swift in Sources */,
 				F257F9DD1EDCC5D60015D665 /* SettingsViewController.swift in Sources */,
 				253B68EB1E27C2BF00CFB54B /* SignUpViewController.swift in Sources */,
 				F2E81AC31E0B462700258FFF /* ViewController.swift in Sources */,
 				F203F88E1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift in Sources */,
 				F2E81AC11E0B462700258FFF /* AppDelegate.swift in Sources */,
+				F27BF5BE1EE0B85C0077FC2F /* RecipeItemCell.swift in Sources */,
 				25B7D9AA1E26F07800BB2674 /* LogInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

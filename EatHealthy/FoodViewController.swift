@@ -20,8 +20,8 @@ fileprivate let foodHeaders: HTTPHeaders = [
     "Accept": "application/json"
 ]
 
-class FoodViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
-
+class FoodViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
+ 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var caloriesLabel: UILabel!
@@ -30,8 +30,8 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
     
     var productsCount: Int = 0
     var cellId: Int = 0
-    var itemsArray: Array<String> = []
-    var itemsCalories: Array<Int> = []
+    var itemsArray: [String] = []
+    var itemsCalories: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +69,7 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
             let jsonProductsCount = jsonData["hits"].count
             self.productsCount = jsonProductsCount
             
-            print(self.productsCount)
-            
+            //print(self.productsCount)
             //print(jsonProducts)
             
             for(key, value):(String, JSON) in jsonProducts {
@@ -191,8 +190,8 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
             cell.contentView.backgroundColor = selected ? selectedBackgroundColor : defaultBackgroundColor
         }
         if !selected {
-            caloriesLabel.text = ""
-            gramsLabel.text = ""
+            caloriesLabel.text = "food"
+            gramsLabel.text = "food"
         }
     }
     
@@ -221,17 +220,6 @@ class FoodViewController: UIViewController,UICollectionViewDataSource, UICollect
         view.configureContent(title: "Success", body: "Food has been added to your diary.")
         SwiftMessages.show(view: view)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

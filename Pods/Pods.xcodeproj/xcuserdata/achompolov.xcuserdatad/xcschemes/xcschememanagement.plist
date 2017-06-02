@@ -39,11 +39,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>LNRSimpleNotifications.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-EatHealthy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,22 +62,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0DD530243BECD2E1A51A852369E302F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1EC5B372950A2392C0E5B4C224FD502D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>38EB8A88CFE19FC2C25512000CBB50DF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3EDF03FE07ABD18966FC5630D900E259</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A35CDB7C9CECEED9E3F375394FFE97A</key>
+		<key>650E365ABCFE0D0915DFF9F67E0DD4B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>95BE041AF61A1014AD94814E85326E60</key>
+		<key>A1C111E49E0482A97B106987B99B770F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -118,6 +103,11 @@
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E70E99EF35288D6808ED9D621961839D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

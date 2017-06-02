@@ -39,7 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
             application.registerForRemoteNotifications()
         }
+        
         return true
+    
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -71,8 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
-        
-        // Persist it in your backend in case it's new
     }
     
     // Called when APNs failed to register the device for push notifications

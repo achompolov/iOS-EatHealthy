@@ -14,12 +14,12 @@
 		D80B06CA3104D6D73EC26D0F /* Pods_EatHealthy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48841EB759AD8AB0298C8B7C /* Pods_EatHealthy.framework */; };
 		F20228281EC70F910062CA72 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20228271EC70F910062CA72 /* UserNotifications.framework */; };
 		F203F88E1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F203F88D1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift */; };
-		F234FF3A1EDF826D00EB8187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F234FF391EDF826D00EB8187 /* GoogleService-Info.plist */; };
 		F234FF3D1EE05E0900EB8187 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F234FF3C1EE05E0900EB8187 /* SearchViewController.swift */; };
 		F257F9DD1EDCC5D60015D665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */; };
 		F27BF5BA1EE0AA190077FC2F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BF5B91EE0AA190077FC2F /* SettingsTableViewController.swift */; };
 		F27BF5BE1EE0B85C0077FC2F /* RecipeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BF5BD1EE0B85C0077FC2F /* RecipeItemCell.swift */; };
 		F27BF5C11EE0C9390077FC2F /* RecipeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27BF5C01EE0C9390077FC2F /* RecipeInfoViewController.swift */; };
+		F2856D4E1EE1F6A100236EE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2856D4D1EE1F6A100236EE7 /* GoogleService-Info.plist */; };
 		F29D1EF41EDA14CD00F34D5D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29D1EF31EDA14CC00F34D5D /* UserViewController.swift */; };
 		F2E81AC11E0B462700258FFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E81AC01E0B462700258FFF /* AppDelegate.swift */; };
 		F2E81AC31E0B462700258FFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E81AC21E0B462700258FFF /* ViewController.swift */; };
@@ -59,13 +59,13 @@
 		F203F88D1EDC1D4F0020A252 /* CalorieGraphCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieGraphCollectionViewCell.swift; sourceTree = "<group>"; };
 		F20BB7051EDEFCDE00F18B67 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		F234FF361EDF807500EB8187 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Carthage/Build/iOS/FirebaseCore.framework; sourceTree = "<group>"; };
-		F234FF391EDF826D00EB8187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F234FF3C1EE05E0900EB8187 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F257F9DC1EDCC5D60015D665 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F274B89D1EC6F309002F8ECF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F27BF5B91EE0AA190077FC2F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F27BF5BD1EE0B85C0077FC2F /* RecipeItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeItemCell.swift; sourceTree = "<group>"; };
 		F27BF5C01EE0C9390077FC2F /* RecipeInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeInfoViewController.swift; sourceTree = "<group>"; };
+		F2856D4D1EE1F6A100236EE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F288ECA61EBF0964001D6187 /* EatHealthy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EatHealthy.entitlements; sourceTree = "<group>"; };
 		F29D1EF31EDA14CC00F34D5D /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		F2E81ABD1E0B462700258FFF /* EatHealthy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EatHealthy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,7 +230,7 @@
 				F2E81AC71E0B462700258FFF /* Assets.xcassets */,
 				F2E81AC91E0B462700258FFF /* LaunchScreen.storyboard */,
 				F2E81ACC1E0B462700258FFF /* Info.plist */,
-				F234FF391EDF826D00EB8187 /* GoogleService-Info.plist */,
+				F2856D4D1EE1F6A100236EE7 /* GoogleService-Info.plist */,
 			);
 			path = EatHealthy;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2E81ACB1E0B462700258FFF /* LaunchScreen.storyboard in Resources */,
-				F234FF3A1EDF826D00EB8187 /* GoogleService-Info.plist in Resources */,
+				F2856D4E1EE1F6A100236EE7 /* GoogleService-Info.plist in Resources */,
 				F2E81AC81E0B462700258FFF /* Assets.xcassets in Resources */,
 				F2E81AC61E0B462700258FFF /* Main.storyboard in Resources */,
 			);

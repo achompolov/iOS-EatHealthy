@@ -10,7 +10,6 @@ target 'EatHealthy' do
     # Pods for Firebase
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
-    pod 'Firebase/Storage'
 
     # Pods for HTTP
     pod 'Alamofire'
@@ -20,9 +19,6 @@ target 'EatHealthy' do
     pod 'Bolts'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
-
-    # Pods for LocalNotifications
-    pod 'LNRSimpleNotifications'
 
     # Pods for UI
     pod 'SwiftMessages'

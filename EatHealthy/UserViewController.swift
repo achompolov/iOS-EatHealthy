@@ -19,11 +19,11 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var nameLabel: UILabel!
     
     var days: [String]! = []
-    var weeks: [String]! = []
     var months: [String]! = []
+    var years: [String]! = []
     var caloriesByDay: [Double] = []
-    var caloriesByWeek: [Double] = []
     var caloriesByMonth: [Double] = []
+    var caloriesByYear: [Double] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,13 +96,13 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             cell.setChart(dataPoints: days, values: caloriesByDay)
         case 1:
-            weeks = ["First", "Seconds", "Third", "Fourth"]
-            caloriesByWeek = [14245.0, 9341.0, 2343.0, 5431.0]
-            cell.setChart(dataPoints: weeks, values: caloriesByWeek)
-        case 2:
             months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
             caloriesByMonth = [40321.0, 54738.0, 75938.0, 19583.0, 57302.0, 47917.0, 37194.0, 96843.0, 57391.0, 85729.0, 16382.0, 37194.0]
             cell.setChart(dataPoints: months, values: caloriesByMonth)
+        case 2:
+            years = ["2013", "2014", "2015", "2016", "2017"]
+            caloriesByYear = [434243.0, 543533.0, 134423.0, 947284.0, 100493.0]
+            cell.setChart(dataPoints: years, values: caloriesByYear)
         default:
             cell.setChart(dataPoints: [], values: [])
         }

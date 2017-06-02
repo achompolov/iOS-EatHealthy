@@ -621,7 +621,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="5744.8000000000002" y="-541.07946026986508"/>
+            <point key="canvasLocation" x="5745" y="-495"/>
         </scene>
         <!--Settings-->
         <scene sceneID="eEU-Ee-lQq">
@@ -655,7 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TAW-Gw-YP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6924" y="-420.53973013493254"/>
+            <point key="canvasLocation" x="6924" y="-353"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="qsS-5l-bf5">
@@ -795,7 +795,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcL-Xb-NLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7788" y="-421.88905547226392"/>
+            <point key="canvasLocation" x="7806" y="-354"/>
         </scene>
         <!--Me-->
         <scene sceneID="uVd-e1-p2x">
@@ -819,14 +819,14 @@
                                                 <rect key="frame" x="8" y="41" width="251" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Have a look at your progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLM-Me-Sil">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="check your calorie progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLM-Me-Sil">
                                                 <rect key="frame" x="12" y="74" width="255" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sampleProfile" translatesAutoresizingMaskIntoConstraints="NO" id="hr2-su-bVk">
@@ -837,7 +837,7 @@
                                                 <rect key="frame" x="8" y="8" width="251" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -869,7 +869,7 @@
                                                 </view>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.38431372549019605" green="0.61176470588235299" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <size key="customSize" width="375" height="478"/>
                                         <connections>
                                             <outlet property="barChartView" destination="rXc-Lg-LgJ" id="hKm-rt-UVa"/>
@@ -900,9 +900,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rsX-Su-A55" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5744.8000000000002" y="627.4362818590705"/>
+            <point key="canvasLocation" x="6924" y="482"/>
         </scene>
-        <!--Search-->
+        <!--Recipes-->
         <scene sceneID="EGR-BA-GFM">
             <objects>
                 <viewController storyboardIdentifier="search" id="AlK-6A-bco" customClass="SearchViewController" customModule="EatHealthy" customModuleProvider="target" sceneMemberID="viewController">
@@ -980,7 +980,7 @@
                             <constraint firstAttribute="trailing" secondItem="cXF-Hs-taO" secondAttribute="trailing" id="bkI-57-d0c"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="search" id="jOp-uA-D9Z"/>
+                    <tabBarItem key="tabBarItem" title="Recipes" image="book" id="jOp-uA-D9Z"/>
                     <connections>
                         <outlet property="collectionView" destination="tQg-oY-g6T" id="ZxU-cK-5Am"/>
                         <outlet property="searchBar" destination="ybZ-I8-HgI" id="Vp9-93-Ecq"/>
@@ -997,7 +997,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="6924" y="404.34782608695656"/>
+            <point key="canvasLocation" x="5745" y="673"/>
         </scene>
         <!--Recipe Info View Controller-->
         <scene sceneID="qpS-TD-be0">
@@ -1021,7 +1021,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Idt-Ne-X9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7773.6000000000004" y="403.44827586206901"/>
+            <point key="canvasLocation" x="5745" y="1383"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="VeT-rH-eYa">
@@ -1046,9 +1046,9 @@
     </scenes>
     <resources>
         <image name="Steak on fire" width="100" height="100"/>
+        <image name="book" width="25" height="25"/>
         <image name="food" width="25" height="25"/>
         <image name="sampleProfile" width="100" height="100"/>
-        <image name="search" width="25" height="25"/>
         <image name="settings" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
     </resources>

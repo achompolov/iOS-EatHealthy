@@ -62,7 +62,6 @@ class SearchViewController: UIViewController,  UICollectionViewDataSource, UICol
             let jsonProductsCount = jsonData.count
             self.productsCount = jsonProductsCount
     
-            //print(jsonProducts)
             for(key, value):(String, JSON) in jsonProducts {
                 for (primaryKey, primaryValue):(String, JSON) in value {
                     if(primaryKey == "title") {
@@ -75,8 +74,7 @@ class SearchViewController: UIViewController,  UICollectionViewDataSource, UICol
                     }
                 }
             }
-            print(self.itemsArray.count)
-            print(self.itemsPreparation.count)
+            
             self.collectionView.reloadData()
         }
     }

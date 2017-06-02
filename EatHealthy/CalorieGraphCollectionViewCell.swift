@@ -15,23 +15,21 @@ class CalorieGraphCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
     
     func setChart(dataPoints: [String], values: [Double]) {
         barChartView.delegate = self
-        barChartView.noDataText = "No data scrub"
+        barChartView.noDataText = "No data"
         barChartView.chartDescription?.text = ""
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
         barChartView.xAxis.granularity = 1
         barChartView.xAxis.labelPosition = .bottom
-        barChartView.backgroundColor = UIColor(red: 98/255, green: 156/255, blue: 194/255, alpha: 1)
-        barChartView.animate(xAxisDuration: 3.0)
-        barChartView.animate(yAxisDuration: 3.0)
+        barChartView.backgroundColor = UIColor(red: 203/255, green: 203/255, blue: 203/255, alpha: 1)
+        barChartView.animate(xAxisDuration: 2.0)
+        barChartView.animate(yAxisDuration: 2.0)
         barChartView.leftAxis.drawGridLinesEnabled = false
         barChartView.rightAxis.drawGridLinesEnabled = false
-    
         barChartView.rightAxis.drawLabelsEnabled = false
-        barChartView.legend.enabled = false
         barChartView.doubleTapToZoomEnabled = false
+        barChartView.highlightFullBarEnabled = false
         
         var dataEntries: [BarChartDataEntry] = []
-        
         for i in 0..<dataPoints.count {
             //print("\(i),\(dataPoints[i]),\(values[i])")
             let dataEntry = BarChartDataEntry(x: Double(i), yValues: [Double(values[i])])

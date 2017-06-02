@@ -106,7 +106,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().sendPasswordReset(withEmail: email!, completion: { (error) in
                 if error != nil {
                     let view = MessageView.viewFromNib(layout: .StatusLine)
-                    view.configureTheme(.warning)
+                    view.configureTheme(.error)
                     view.configureDropShadow()
                     view.configureContent(title: "Failed", body: "Invalid email address please try again.")
                     SwiftMessages.show(view: view)

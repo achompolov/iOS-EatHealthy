@@ -31,7 +31,6 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func logOut(_ sender: Any) {
         let logOutAlert = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: UIAlertControllerStyle.alert)
         logOutAlert.addAction(UIAlertAction(title: "Yes, I'm sure.", style: .default, handler: { (action: UIAlertAction!) in
-            if Auth.auth().currentUser != nil {
                 do {
                     try Auth.auth().signOut()
                     let view = MessageView.viewFromNib(layout: .StatusLine)
@@ -45,7 +44,7 @@ class SettingsTableViewController: UITableViewController {
                     print(error.localizedDescription)
                 }
             }
-        }))
+        ))
         logOutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(logOutAlert, animated: true, completion: nil)
     }

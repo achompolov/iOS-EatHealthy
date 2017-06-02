@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Firebase
 import FirebaseAuth
+import SwiftMessages
 
 fileprivate let reuseIdentifier = "calorieGraph"
 
@@ -67,6 +68,73 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func calorieCalc(_ sender: Any) {
+        let alertController = UIAlertController(title: "", message: "Calculate how many calories you burn", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertController.addTextField { (textField: UITextField) -> Void in
+            textField.placeholder = "Age(Years)"
+        }
+        alertController.addTextField{ (textField: UITextField) -> Void in
+            textField.placeholder = "Gender(Male/Female)"
+        }
+        alertController.addTextField{ (textField: UITextField) -> Void in
+            textField.placeholder = "Height(Meters.Centimeters)"
+        }
+        alertController.addTextField{ (textField: UITextField) -> Void in
+            textField.placeholder = "Weight(Kilograms)"
+        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+            let age = Double((alertController.textFields?[0].text)!)
+            let gender = alertController.textFields?[1].text
+            let height = Double((alertController.textFields?[2].text)!)
+            let weight = Double((alertController.textFields?[3].text)!)
+            var bmr: Double = 0
+            
+            if (gender == "Male" || gender == "male") {
+                let bmrWeight = 13.75*weight!
+                let bmrHeight = 5.0*height!
+                let bmrAge = 6.75*age!
+                
+                bmr = 66.47+bmrWeight+bmrHeight-bmrAge
+
+                self.showMessageView(bmr: bmr)
+            }else if (gender == "Female" || gender == "female") {
+                let bmrWeight = 9.56*weight!
+                let bmrHeight = 1.84*height!
+                let bmrAge = 4.67*age!
+                
+                bmr = 665.09+bmrWeight+bmrHeight-bmrAge
+                self.showMessageView(bmr: bmr)
+            }else {
+                let view = MessageView.viewFromNib(layout: .StatusLine)
+                view.configureTheme(.error)
+                view.configureDropShadow()
+                view.configureContent(title: "BMR Fail", body: "There was an error try again.")
+                var viewConfig  = SwiftMessages.defaultConfig
+                viewConfig.duration = .seconds(seconds: 1)
+                SwiftMessages.show(config: viewConfig, view: view)
+            }
+        }))
+        present(alertController, animated: true, completion: nil)
+        
+    }
+ 
+    func showMessageView(bmr: Double) {
+        let iconText = "😎"
+        let view = MessageView.viewFromNib(layout: .CardView)
+        view.configureTheme(.success)
+        view.configureDropShadow()
+        view.button?.isHidden = true
+        view.configureContent(title: "BMR", body: "You burn \(bmr)/daily", iconText: iconText)
+        var viewConfig  = SwiftMessages.defaultConfig
+        viewConfig.presentationStyle = .bottom
+        viewConfig.duration = .seconds(seconds: 5)
+        SwiftMessages.show(config: viewConfig, view: view)
+    }
+ 
+ 
     func setupCollectionViewCells() {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

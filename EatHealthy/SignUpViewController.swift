@@ -206,9 +206,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                     self.present(viewController, animated: true, completion: nil)
                 } else {
                     let view = MessageView.viewFromNib(layout: .StatusLine)
-                    view.configureTheme(.warning)
+                    view.configureTheme(.error)
                     view.configureDropShadow()
-                    view.configureContent(title: "Warning", body: (error?.localizedDescription)!)
+                    view.configureContent(title: "Error", body: (error?.localizedDescription)!)
                     SwiftMessages.show(view: view)                }
             }
         }
